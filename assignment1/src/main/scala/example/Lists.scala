@@ -1,7 +1,5 @@
 package example
 
-import common._
-
 object Lists {
   /**
    * This method computes the sum of all elements in the list xs. There are
@@ -23,7 +21,15 @@ object Lists {
    * @param xs A list of natural numbers
    * @return The sum of all elements in `xs`
    */
-  def sum(xs: List[Int]): Int = ???
+  def sum(xs: List[Int]): Int = {
+    /*if list has no more items return sum else add next item in list to accumulator*/
+    def sumIter(acc: Int): Int = {
+      if(xs.isEmpty) acc
+      else sumIter(acc+xs.head)
+    }
+    sumIter(xs.head)
+
+  }
 
   /**
    * This method returns the largest element in a list of integers. If the
