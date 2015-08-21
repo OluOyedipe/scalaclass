@@ -17,9 +17,9 @@ class BalanceSuite extends FunSuite {
     assert(balance("I told him (that it's not (yet) done).\n(But he wasn't listening)".toList))
   }
 
-  test("balance: ':-)' is unbalanced") {
+  test("balance: ':-)' is unbalanced") {}
     assert(!balance(":-)".toList))
-  }
+
 
   test("balance: counting is not enough") {
     assert(!balance("())(".toList))
