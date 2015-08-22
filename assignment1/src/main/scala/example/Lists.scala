@@ -27,6 +27,8 @@ object Lists {
 
   }
 
+
+
   /**
    * This method returns the largest element in a list of integers. If the
    * list `xs` is empty it throws a `java.util.NoSuchElementException`.
@@ -40,5 +42,15 @@ object Lists {
    * @return The largest element in `xs`
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
-  def max(xs: List[Int]): Int = ???
+  def max(xs: List[Int]): Int = {
+    def loop(currentMax: Int, listOfNumbers:List[Int]): Int = {
+      if(listOfNumbers.isEmpty) currentMax
+      else loop(maxF(currentMax,listOfNumbers.head),listOfNumbers.tail)
+    }
+
+    def maxF(currentMax: Int, head: Int): Int = {
+      if (currentMax > head) currentMax else head
+    }
+    loop(xs.head,xs.tail)
+  }
 }
