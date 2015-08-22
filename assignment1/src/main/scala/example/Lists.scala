@@ -22,12 +22,8 @@ object Lists {
    * @return The sum of all elements in `xs`
    */
   def sum(xs: List[Int]): Int = {
-    /*if list has no more items return sum else add next item in list to accumulator*/
-    def sumIter(acc: Int): Int = {
-      if(xs.isEmpty) acc
-      else sumIter(acc+xs.head)
-    }
-    sumIter(xs.head)
+    /*if list has no more items return 0 else add next item in list */
+    if(xs.isEmpty) 0 else xs.head + sum(xs.tail)
 
   }
 
