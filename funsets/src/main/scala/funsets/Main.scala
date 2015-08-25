@@ -7,4 +7,5 @@ object Main extends App {
   def p: Int => Boolean = (x:Int) => x % 5 == 0
   println(forall(s,p))
   println(exists(s,p))
+  println(printSet(s))
 }
