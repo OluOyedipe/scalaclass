@@ -183,12 +183,6 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
     right.foreach(f)
   }
 
-
-  def union(that: TweetSet): TweetSet =
-    that union (right union left incl elem)
-
-
-
 }
 
 trait TweetList {
