@@ -26,9 +26,15 @@ object Huffman {
 
   // Part 1: Basics
 
-  def weight(tree: CodeTree): Int = ??? // tree match ...
+  def weight(tree: CodeTree): Int = tree match {
+    case Fork(left: CodeTree, right: CodeTree, chars: List[Char], weight: Int) => weight
+    case Leaf(char: Char, weight: Int) => weight
+  } // tree match ...
 
-  def chars(tree: CodeTree): List[Char] = ??? // tree match ...
+  def chars(tree: CodeTree): List[Char] = tree match {
+    case Fork(left: CodeTree, right: CodeTree, chars: List[Char], weight: Int) => chars
+    case Leaf(char: Char, weight: Int) => List(char)
+  } // tree match ...
 
   def makeCodeTree(left: CodeTree, right: CodeTree) =
     Fork(left, right, chars(left) ::: chars(right), weight(left) + weight(right))
@@ -71,7 +77,21 @@ object Huffman {
    *       println("integer is  : "+ theInt)
    *   }
    */
-  def times(chars: List[Char]): List[(Char, Int)] = ???
+  def times(chars: List[Char]): List[(Char, Int)] = {
+    def timesAcc(acc: List[(Char, Int)], xs: List[Char]): List[(Char, Int)] = {
+      xs match {
+        case List() => acc
+        case y :: ys => timesAcc(insert(y,acc), ys)
+      }
+    }
+
+    def insert(x: Char, xs: List[(Char, Int)]): List [(Char, Int)] =
+    xs match {
+      case List() => (x,1) :: xs
+      case (z: (Char, Int)) :: (zs: List[(Char, Int)]) => if (x == z._1) (x, z._2 + 1) :: zs else z :: insert(x, zs)
+    }
+    timesAcc(List((chars.head,1)),chars.tail)
+  }
 
   /**
    * Returns a list of `Leaf` nodes for a given frequency table `freqs`.
